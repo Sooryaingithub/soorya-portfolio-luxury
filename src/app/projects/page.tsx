@@ -1,0 +1,102 @@
+"use client";
+
+import { useState } from "react";
+import { projects, Project } from "@/data/projects";
+import Link from "next/link";
+import { ArrowRight, Filter } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const allCategories = Array.from(new Set(projects.flatMap(p => p.category)));
+
+function ProjectCard({ project }: { project: Project }) {
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.3 }}
+    >
+      <Link href={`/project/${project.slug}`} className="block group glass-panel p-6 h-full flex flex-col hover:bg-foreground/10 transition-colors duration-300">
+        <div className="flex justify-between items-start mb-4">
+          <h3 className="text-xl font-semibold tracking-tight">{project.title}</h3>
+          <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-foreground" />
+        </div>
+        <p className="text-sm text-muted-foreground flex-1 mb-6">
+          {project.shortDescription}
+        </p>
+        <div className="flex flex-wrap gap-2 mt-auto">
+          <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded bg-primary/10 text-primary">
+            {project.status}
+          </span>
+          <span className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded bg-foreground/5 text-foreground/60">
+            {project.year}
+          </span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+}
+
+export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+  const filteredProjects = activeFilter 
+    ? projects.filter(p => p.category.includes(activeFilter))
+    : projects;
+
+  return (
+    <main className="flex-1 flex flex-col min-h-[100dvh] px-4 pt-32 pb-24 relative max-w-7xl mx-auto w-full overflow-x-clip">
+      <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full pointer-events-none -z-10" />
+
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-12 relative z-20">
+        <div>
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tighter mb-4">
+            Projects Hub
+          </h1>
+          <p className="text-lg text-muted-foreground max-w-xl">
+            An interactive directory of systems, architectures, and platforms built across cloud, edge, and spatial ecosystems.
+          </p>
+        </div>
+      </div>
+
+      {/* Filter Bar */}
+      <div className="flex items-center gap-3 overflow-x-auto pb-4 mb-4 scrollbar-hide relative z-20">
+        <button 
+          onClick={() => setActiveFilter(null)}
+          className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeFilter === null ? 'bg-foreground text-background shadow-[0_0_12px_rgba(255,215,0,0.3)]' : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10'}`}
+        >
+          All Domains
+        </button>
+        {allCategories.map(cat => (
+          <button 
+            key={cat}
+            onClick={() => setActiveFilter(cat === activeFilter ? null : cat)}
+            className={`flex-shrink-0 px-4 py-2 rounded-full text-sm font-medium transition-colors ${activeFilter === cat ? 'bg-foreground text-background shadow-[0_0_12px_rgba(255,215,0,0.3)]' : 'bg-foreground/5 text-foreground/60 hover:bg-foreground/10'}`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      {/* List Fallback / Alternative View */}
+      <div className="mt-8 relative z-20">
+        <div className="flex items-center justify-between mb-8">
+          <h2 className="text-2xl font-medium tracking-tight">Index View</h2>
+          <div className="flex items-center gap-2 text-sm text-muted-foreground bg-white/5 px-3 py-1.5 rounded-full border border-foreground/10">
+            <Filter className="w-4 h-4" />
+            <span>{filteredProjects.length} Projects</span>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
+          </AnimatePresence>
+        </div>
+      </div>
+    </main>
+  );
+}
