@@ -30,8 +30,8 @@ export default function CommandPalette() {
   const links = [
     { name: "Home", url: "/" },
     { name: "About", url: "/about" },
-    { name: "Projects", url: "/projects" },
-    { name: "Skills", url: "/skills" },
+    { name: "Spaces", url: "/projects" },
+    { name: "Craft", url: "/skills" },
     { name: "Timeline", url: "/timeline" },
     { name: "Lab", url: "/lab" },
     { name: "Now", url: "/now" },
@@ -83,7 +83,7 @@ export default function CommandPalette() {
 
           {filteredProjects.length > 0 && (
             <div>
-              <h3 className="px-3 py-2 text-xs font-medium text-foreground/40 uppercase tracking-widest">Projects</h3>
+              <h3 className="px-3 py-2 text-xs font-medium text-foreground/40 uppercase tracking-widest">Spaces</h3>
               {filteredProjects.map((project) => (
                 <button
                   key={project.id}

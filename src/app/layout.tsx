@@ -2,8 +2,13 @@ import MinimalBackground from "@/components/visuals/MinimalBackground";
 import Navigation from "@/components/layout/Navigation";
 import CommandPalette from "@/components/ui/CommandPalette";
 import { ThemeProvider } from "@/components/theme-provider";
+import SmoothScroll from "@/components/layout/SmoothScroll";
 import "./globals.css";
 import type { Metadata } from "next";
+import { Inter, Playfair_Display } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
   title: "Soorya Sendilnath - AI Systems Engineer",
@@ -30,12 +35,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-full flex flex-col relative antialiased bg-background text-foreground transition-colors duration-300">
+      <body className={`min-h-full flex flex-col relative antialiased bg-background text-foreground transition-colors duration-300 ${inter.variable} ${playfair.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <MinimalBackground />
-          <Navigation />
-          <CommandPalette />
-          {children}
+          <SmoothScroll>
+            <MinimalBackground />
+            <Navigation />
+            <CommandPalette />
+            {children}
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

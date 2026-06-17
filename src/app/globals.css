@@ -8,6 +8,7 @@
   --color-white: var(--foreground);
   --color-black: var(--background);
   --font-sans: var(--font-sans);
+  --font-serif: var(--font-playfair);
   --font-mono: var(--font-geist-mono);
   
   --color-glass: var(--glass);
@@ -41,77 +42,76 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Apple Light Mode Palette */
-  --background: oklch(0.98 0 0); /* Off white */
-  --foreground: oklch(0.15 0 0); /* Dark text */
+  /* Luxury Architectural Light Mode - Travertine & Ivory */
+  --background: oklch(0.97 0.01 80); /* Soft warm ivory */
+  --foreground: oklch(0.20 0.01 250); /* Deep graphite/charcoal */
   
-  --card: oklch(0.95 0 0);
-  --card-foreground: oklch(0.15 0 0);
+  --card: oklch(0.95 0.01 80);
+  --card-foreground: oklch(0.20 0.01 250);
   
-  --popover: oklch(0.98 0 0);
-  --popover-foreground: oklch(0.15 0 0);
+  --popover: oklch(0.97 0.01 80);
+  --popover-foreground: oklch(0.20 0.01 250);
   
-  --primary: oklch(0.15 0 0);
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.75 0.08 75); /* Champagne Gold */
+  --primary-foreground: oklch(0.98 0.01 80);
   
-  --secondary: oklch(0.92 0 0);
-  --secondary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.90 0.01 80); /* Stone grey */
+  --secondary-foreground: oklch(0.20 0.01 250);
   
-  --muted: oklch(0.92 0 0);
-  --muted-foreground: oklch(0.5 0 0);
+  --muted: oklch(0.92 0.01 80); 
+  --muted-foreground: oklch(0.50 0.01 250);
   
-  --accent: oklch(0.92 0 0);
-  --accent-foreground: oklch(0.15 0 0);
+  --accent: oklch(0.75 0.08 75); /* Champagne Gold */
+  --accent-foreground: oklch(0.98 0.01 80);
   
-  --destructive: oklch(0.60 0.20 20);
+  --destructive: oklch(0.60 0.15 20);
   
-  --border: oklch(0 0 0 / 12%);
-  --input: oklch(0 0 0 / 12%);
-  --ring: oklch(0 0 0 / 25%);
+  --border: oklch(0.20 0.01 250 / 10%);
+  --input: oklch(0.20 0.01 250 / 10%);
+  --ring: oklch(0.75 0.08 75 / 50%);
   
-  --radius: 1rem;
+  --radius: 0px; /* Sharp, structural edges */
   
-  /* Custom Glassmorphism Light */
-  --glass: oklch(0 0 0 / 2%);
-  --glass-border: oklch(0 0 0 / 8%);
+  /* Smoked Glass / Marble feel */
+  --glass: oklch(0.97 0.01 80 / 70%);
+  --glass-border: oklch(0.20 0.01 250 / 8%);
 
-  /* Custom Particles */
-  --particle-color: 0, 0, 0;
+  --particle-color: 40, 40, 40;
 }
 
 .dark {
-  /* Apple Dark Mode Palette */
-  --background: oklch(0.15 0 0); 
-  --foreground: oklch(0.98 0 0);
+  /* Luxury Architectural Dark Mode - Charcoal & Warm Light */
+  --background: oklch(0.18 0.01 250); /* Charcoal/Graphite */
+  --foreground: oklch(0.95 0.02 80); /* Warm travertine white */
   
-  --card: oklch(0.20 0 0);
-  --card-foreground: oklch(0.98 0 0);
+  --card: oklch(0.22 0.01 250);
+  --card-foreground: oklch(0.95 0.02 80);
   
-  --popover: oklch(0.18 0 0);
-  --popover-foreground: oklch(0.98 0 0);
+  --popover: oklch(0.18 0.01 250);
+  --popover-foreground: oklch(0.95 0.02 80);
   
-  --primary: oklch(0.98 0 0);
-  --primary-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.80 0.10 75); /* Glowing Champagne Gold */
+  --primary-foreground: oklch(0.18 0.01 250);
   
-  --secondary: oklch(0.25 0 0);
-  --secondary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.25 0.01 250); /* Architectural concrete */
+  --secondary-foreground: oklch(0.95 0.02 80);
   
-  --muted: oklch(0.25 0 0);
-  --muted-foreground: oklch(0.70 0 0);
+  --muted: oklch(0.25 0.01 250);
+  --muted-foreground: oklch(0.70 0.02 80);
   
-  --accent: oklch(0.25 0 0);
-  --accent-foreground: oklch(0.98 0 0);
+  --accent: oklch(0.80 0.10 75);
+  --accent-foreground: oklch(0.18 0.01 250);
   
-  --destructive: oklch(0.60 0.20 20);
+  --destructive: oklch(0.60 0.15 20);
   
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(1 0 0 / 25%);
+  --border: oklch(0.95 0.02 80 / 10%);
+  --input: oklch(0.95 0.02 80 / 10%);
+  --ring: oklch(0.80 0.10 75 / 50%);
   
-  --glass: oklch(1 0 0 / 4%);
-  --glass-border: oklch(1 0 0 / 8%);
+  --glass: oklch(0.18 0.01 250 / 60%);
+  --glass-border: oklch(0.95 0.02 80 / 8%);
 
-  --particle-color: 255, 255, 255;
+  --particle-color: 240, 235, 220;
 }
 
 @layer base {
@@ -143,5 +143,5 @@
 }
 
 .glass-panel {
-  @apply bg-glass border border-glass-border backdrop-blur-2xl rounded-2xl shadow-2xl;
+  @apply bg-glass border border-glass-border backdrop-blur-md rounded-2xl shadow-2xl;
 }

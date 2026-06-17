@@ -17,7 +17,7 @@ const domains = [
 export default function About() {
   return (
     <main className="flex-1 flex flex-col items-center min-h-[100dvh] px-4 pt-32 pb-24 relative">
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 blur-[120px] rounded-full pointer-events-none -z-10" />
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,var(--color-primary)_0%,transparent_70%)] opacity-50 rounded-full pointer-events-none -z-10 translate-z-0" />
 
       <div className="max-w-4xl w-full">
         <motion.div

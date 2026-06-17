@@ -1,105 +1,70 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
 
-const skillCategories = [
+const craftCategories = [
   {
     name: "Artificial Intelligence",
-    skills: ["LLM Engineering", "Agentic Systems", "Prompt Engineering", "Computer Vision", "NLP"]
+    materials: ["LLM Engineering", "Agentic Systems", "Prompt Engineering", "Computer Vision", "NLP"]
   },
   {
     name: "Apple Ecosystem",
-    skills: ["SwiftUI", "CoreML", "MLX", "ARKit", "Vision Framework"]
+    materials: ["SwiftUI", "CoreML", "MLX", "ARKit", "Vision Framework"]
   },
   {
     name: "Cloud & Infrastructure",
-    skills: ["Azure", "Serverless", "Data Engineering", "Linux", "Networking", "Self Hosting", "VPN Infrastructure"]
+    materials: ["Azure", "Serverless", "Data Engineering", "Linux", "Networking", "Self Hosting", "VPN Infrastructure"]
   },
   {
     name: "Programming",
-    skills: ["Python", "Swift", "TypeScript", "JavaScript", "C++"]
+    materials: ["Python", "Swift", "TypeScript", "JavaScript", "C++"]
   }
 ];
 
-export default function Skills() {
-  const [activeCategory, setActiveCategory] = useState<string | null>(null);
-
+export default function CraftPage() {
   return (
-    <main className="flex-1 flex flex-col min-h-[100dvh] px-4 pt-32 pb-24 relative overflow-hidden">
-      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-40">
-        <div className="w-[800px] h-[800px] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/10 via-background to-background" />
-      </div>
-
-      <div className="max-w-6xl mx-auto w-full relative z-10 flex flex-col items-center">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-24"
-        >
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tighter mb-4">
-            Technology Universe
-          </h1>
-          <p className="text-lg text-muted-foreground">
-            Ecosystems and tools used to engineer intelligence.
-          </p>
-        </motion.div>
-
-        <div className="relative w-full max-w-4xl mx-auto min-h-[500px] flex flex-col md:flex-row gap-8 items-start md:items-center justify-center">
-          
-          <div className="flex md:flex-col flex-wrap justify-center gap-4 w-full md:w-1/3">
-            {skillCategories.map((category, idx) => (
-              <motion.button
-                key={category.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                onClick={() => setActiveCategory(activeCategory === category.name ? null : category.name)}
-                className={`text-left px-6 py-4 rounded-2xl border transition-all ${
-                  activeCategory === category.name || activeCategory === null
-                    ? "bg-foreground/10 border-foreground/20 shadow-lg text-foreground" 
-                    : "bg-transparent border-transparent text-foreground/40 hover:text-foreground/60"
-                }`}
-              >
-                <h2 className="font-medium tracking-tight">{category.name}</h2>
-              </motion.button>
-            ))}
-          </div>
-
-          <div className="flex-1 w-full min-h-[400px] relative">
-            {skillCategories.map((category) => (
-              <motion.div
-                key={category.name}
-                initial={false}
-                animate={{ 
-                  opacity: activeCategory === null || activeCategory === category.name ? 1 : 0,
-                  scale: activeCategory === null || activeCategory === category.name ? 1 : 0.9,
-                  pointerEvents: activeCategory === null || activeCategory === category.name ? "auto" : "none"
-                }}
-                className={`absolute inset-0 flex flex-wrap content-start gap-3 p-6 ${activeCategory === null ? 'opacity-100' : ''}`}
-                style={{ display: activeCategory !== null && activeCategory !== category.name ? 'none' : 'flex' }}
-              >
-                {activeCategory === category.name && (
-                  <div className="w-full mb-4">
-                    <h3 className="text-sm uppercase tracking-wider text-white/40 font-medium">Nodes in {category.name}</h3>
-                  </div>
-                )}
-                
-                {category.skills.map((skill, i) => (
-                  <motion.div
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: i * 0.05 }}
-                    className="glass-panel px-5 py-3 hover:bg-foreground/10 transition-colors cursor-default"
-                  >
-                    <span className="font-medium tracking-tight text-foreground/90">{skill}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
-            ))}
-          </div>
+    <main className="flex-1 flex flex-col min-h-[100dvh] px-6 md:px-12 pt-48 pb-32 relative max-w-[1400px] mx-auto w-full">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-32"
+      >
+        <div className="inline-flex items-center gap-3 px-0 py-1 text-[10px] uppercase tracking-[0.4em] font-medium text-muted-foreground border-b border-foreground/10 pb-2 mb-8">
+          Methodology
         </div>
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif tracking-tight text-foreground leading-none mb-8">
+          Craft
+        </h1>
+        <p className="text-xl md:text-2xl text-muted-foreground font-serif italic max-w-2xl text-balance">
+          The materials, tools, and structural methods utilized to engineer intelligence.
+        </p>
+      </motion.div>
+
+      <div className="w-full">
+        {craftCategories.map((category, idx) => (
+          <motion.div 
+            key={category.name}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.2, delay: idx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="grid md:grid-cols-[1fr_2fr] gap-12 md:gap-24 items-start py-16 border-t border-foreground/10"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-foreground">
+              {category.name}
+            </h2>
+            
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6">
+              {category.materials.map((material, mIdx) => (
+                <li key={mIdx} className="flex gap-6 items-start border-b border-foreground/5 pb-4">
+                  <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground mt-2 px-2 py-1 bg-foreground/5">0{mIdx + 1}</span>
+                  <span className="text-xl font-light text-foreground leading-relaxed pt-1">{material}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        ))}
       </div>
     </main>
   );
