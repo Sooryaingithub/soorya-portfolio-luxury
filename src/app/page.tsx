@@ -31,7 +31,7 @@ export default function Home() {
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] }
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
     }
   };
 
@@ -54,7 +54,7 @@ export default function Home() {
         <motion.p 
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+           transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
            className="mb-12 px-0 py-1 text-[10px] uppercase tracking-[0.5em] font-medium text-muted-foreground border-b border-foreground/5 pb-3"
         >
           AI Systems Architect
@@ -63,7 +63,7 @@ export default function Home() {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 2.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
           className="text-5xl md:text-[6rem] lg:text-[8rem] font-serif tracking-tight text-balance leading-[0.95] text-foreground"
         >
           BUILDING INTELLIGENCE<br />
@@ -88,7 +88,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] as const }}
           className="w-full flex flex-col items-start"
         >
           <p className="text-4xl md:text-6xl lg:text-8xl font-serif tracking-tight text-foreground/90 leading-none mb-16">

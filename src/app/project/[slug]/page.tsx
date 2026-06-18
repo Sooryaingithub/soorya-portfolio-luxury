@@ -190,7 +190,7 @@ export default function SpacePage() {
                     <div className="w-full mt-16 p-8 border border-foreground/10 flex items-center justify-center relative">
                       <div className="absolute top-0 left-0 px-3 py-1 bg-foreground/5 border-b border-r border-foreground/10 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Blueprint</div>
                       <div className="relative w-full aspect-[16/9]">
-                        <Image src={project.content.images.architecture} alt={`${project.title} Architecture`} fill className="object-contain" unoptimized />
+                        <Image src={project.content.images.architecture} alt={`${project.title} Architecture`} fill className="object-contain" />
                       </div>
                     </div>
                   )}
@@ -202,7 +202,7 @@ export default function SpacePage() {
                         <div className="w-full p-8 border border-foreground/10 relative">
                           <div className="absolute top-0 left-0 px-3 py-1 bg-foreground/5 border-b border-r border-foreground/10 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Performance</div>
                           <div className="relative w-full aspect-square">
-                            <Image src={project.content.images.results} alt="Performance Results" fill className="object-contain" unoptimized />
+                            <Image src={project.content.images.results} alt="Performance Results" fill className="object-contain" />
                           </div>
                         </div>
                       )}
@@ -210,7 +210,7 @@ export default function SpacePage() {
                         <div className="w-full p-8 border border-foreground/10 relative">
                           <div className="absolute top-0 left-0 px-3 py-1 bg-foreground/5 border-b border-r border-foreground/10 text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Output</div>
                           <div className="relative w-full aspect-square">
-                            <Image src={project.content.images.output} alt="Model Output" fill className="object-contain" unoptimized />
+                            <Image src={project.content.images.output} alt="Model Output" fill className="object-contain" />
                           </div>
                         </div>
                       )}
