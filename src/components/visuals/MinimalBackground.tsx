@@ -1,49 +1,80 @@
 "use client";
 
-"use client";
-
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function MinimalBackground() {
-  const { scrollYProgress } = useScroll();
-  
-  // Parallax movement for the sunlight gradients
-  const sunY1 = useTransform(scrollYProgress, [0, 1], ["-20%", "50%"]);
-  const sunX1 = useTransform(scrollYProgress, [0, 1], ["-10%", "30%"]);
-  
-  const sunY2 = useTransform(scrollYProgress, [0, 1], ["60%", "-10%"]);
-  const sunX2 = useTransform(scrollYProgress, [0, 1], ["80%", "40%"]);
-
   return (
-    <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden bg-background">
+    <div 
+      style={{ position: 'fixed', inset: 0, zIndex: -1, pointerEvents: 'none', overflow: 'hidden', backgroundColor: '#09090b', fontFamily: 'serif' }}
+    >
       
-      {/* 
-        Architectural Sunlight & Shadow 
-        Using large radial gradients that mimic the sun casting light through massive windows.
-      */}
-
-      {/* Primary Sunlight (Warm, Champagne Gold / Ivory) */}
-      <motion.div 
-        style={{ y: sunY1, x: sunX1, willChange: "transform" }}
-        className="absolute top-0 left-0 w-[120vw] h-[120vw] rounded-full opacity-30 dark:opacity-20 translate-z-0"
-        animate={{ scale: [1, 1.05, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      {/* Massive Background Typography to be refracted by the glass */}
+      <div 
+        style={{
+          position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', 
+          justifyContent: 'center', alignItems: 'center', fontWeight: 900, 
+          opacity: 0.2, color: 'white', mixBlendMode: 'overlay',
+          fontSize: '15vw', lineHeight: '0.85'
+        }}
       >
-        <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,var(--color-primary)_0%,transparent_50%)] translate-z-0" />
-      </motion.div>
+        <span>CREATIVE</span>
+        <span 
+          style={{
+            color: 'transparent',
+            backgroundImage: 'linear-gradient(to right, #22d3ee, #3b82f6, #9333ea)',
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text'
+          }}
+        >
+          ENGINEER
+        </span>
+        <span>VISION</span>
+      </div>
 
-      {/* Secondary Ambient Light (Cooler / Stone reflection) */}
+      {/* Lava Lamp Orbs for deep color refraction */}
       <motion.div 
-        style={{ y: sunY2, x: sunX2, willChange: "transform" }}
-        className="absolute top-0 left-0 w-[100vw] h-[100vw] rounded-full opacity-20 dark:opacity-10 translate-z-0"
-        animate={{ scale: [1.05, 1, 1.05] }}
+        style={{
+          position: 'absolute', top: '10%', left: '20%', width: '50vw', height: '50vw', 
+          borderRadius: '9999px', mixBlendMode: 'screen', opacity: 0.5, 
+          filter: 'blur(100px)', backgroundColor: '#00f0ff',
+          transform: 'translateZ(0)'
+        }}
+        animate={{ 
+          x: ["0%", "30%", "-20%", "0%"],
+          y: ["0%", "40%", "10%", "0%"],
+          scale: [1, 1.2, 0.8, 1]
+        }}
         transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,var(--color-secondary)_0%,transparent_50%)] translate-z-0" />
-      </motion.div>
+      />
 
-      {/* Subtle Structural Lines (Simulating Travertine / Marble Panels) */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--color-foreground)_1px,transparent_1px)] bg-[size:33.33vw_100vh] opacity-[0.02]" />
+      <motion.div 
+        style={{
+          position: 'absolute', bottom: '10%', right: '10%', width: '60vw', height: '60vw', 
+          borderRadius: '9999px', mixBlendMode: 'screen', opacity: 0.4, 
+          filter: 'blur(120px)', backgroundColor: '#ff003c',
+          transform: 'translateZ(0)'
+        }}
+        animate={{ 
+          x: ["0%", "-40%", "20%", "0%"],
+          y: ["0%", "-20%", "-40%", "0%"],
+          scale: [1, 0.9, 1.3, 1]
+        }}
+        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      <motion.div 
+        style={{
+          position: 'absolute', top: '40%', left: '50%', width: '40vw', height: '40vw', 
+          borderRadius: '9999px', mixBlendMode: 'screen', opacity: 0.3, 
+          filter: 'blur(90px)', backgroundColor: '#7000ff',
+          transform: 'translateZ(0)'
+        }}
+        animate={{ 
+          x: ["0%", "-30%", "40%", "0%"],
+          y: ["0%", "30%", "-20%", "0%"],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+      />
     </div>
   );
 }

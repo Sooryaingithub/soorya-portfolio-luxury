@@ -3,29 +3,13 @@ import Navigation from "@/components/layout/Navigation";
 import CommandPalette from "@/components/ui/CommandPalette";
 import { ThemeProvider } from "@/components/theme-provider";
 import SmoothScroll from "@/components/layout/SmoothScroll";
+import { LiquidGlassScene } from "simple-liquid-glass/backdrop";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter, Playfair_Display } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
 
 export const metadata: Metadata = {
   title: "Soorya Sendilnath - AI Systems Engineer",
   description: "Portfolio of Soorya Sendilnath. Building privacy-first AI across cloud infrastructure, local intelligence, and spatial computing.",
-  openGraph: {
-    title: "Soorya Sendilnath - AI Systems Engineer",
-    description: "Portfolio of Soorya Sendilnath. Building privacy-first AI across cloud infrastructure, local intelligence, and spatial computing.",
-    url: "https://sooryasendilnath.com",
-    siteName: "Soorya Sendilnath Portfolio",
-    locale: "en_US",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Soorya Sendilnath - AI Systems Engineer",
-    description: "Building privacy-first AI across cloud infrastructure, local intelligence, and spatial computing.",
-  },
 };
 
 export default function RootLayout({
@@ -35,13 +19,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`min-h-full flex flex-col relative antialiased bg-background text-foreground transition-colors duration-300 ${inter.variable} ${playfair.variable} font-sans`}>
+      <body className={`min-h-full flex flex-col relative antialiased bg-background text-foreground transition-colors duration-300 font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SmoothScroll>
-            <MinimalBackground />
-            <Navigation />
-            <CommandPalette />
-            {children}
+            <LiquidGlassScene>
+              <MinimalBackground />
+              <Navigation />
+              <CommandPalette />
+              {children}
+            </LiquidGlassScene>
           </SmoothScroll>
         </ThemeProvider>
       </body>

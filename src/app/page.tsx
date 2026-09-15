@@ -1,130 +1,104 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { LiquidGlassInteractive } from "simple-liquid-glass/interactive";
+import { ArrowUpRight, Github, Twitter, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
-import { useRef } from "react";
 
 export default function Home() {
-  const containerRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const heroY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { 
-      opacity: 1, 
-      y: 0,
-      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as const }
-    }
-  };
-
-  const renderCinematicText = (text: string) => {
-    return text.split(" ").map((word, i) => (
-      <motion.span key={i} variants={textVariants} className="inline-block mr-[0.25em]">
-        {word}
-      </motion.span>
-    ));
-  };
-
   return (
-    <main ref={containerRef} className="flex-1 flex flex-col items-center w-full min-h-[150vh] relative">
+    <main className="min-h-screen w-full p-4 md:p-8 flex items-center justify-center relative z-20">
       
-      {/* 1. HERO FULL SCREEN */}
-      <motion.section 
-        style={{ y: heroY, opacity: heroOpacity, willChange: "transform, opacity" }}
-        className="h-[100vh] w-full flex flex-col justify-center items-center text-center px-4 relative z-10"
+      <div 
+        className="w-full max-w-7xl grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6"
+        style={{ gridAutoRows: 'minmax(250px, auto)' }}
       >
-        <motion.p 
-           initial={{ opacity: 0, y: 20 }}
-           animate={{ opacity: 1, y: 0 }}
-           transition={{ duration: 1.5, delay: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-           className="mb-12 px-0 py-1 text-[10px] uppercase tracking-[0.5em] font-medium text-muted-foreground border-b border-foreground/5 pb-3"
+        
+        {/* Bento 1: Massive Intro */}
+        <LiquidGlassInteractive 
+          renderer="webgl"
+          lensProfile="player"
+          lensOptions={{ strength: 0.2, chromaticAberration: 0.15 }}
+          className="md:col-span-2 md:row-span-2 border border-white/20 p-10 flex flex-col justify-between group"
+          style={{ borderRadius: '2.5rem' }}
+          background="rgba(20, 20, 25, 0.1)"
         >
-          AI Systems Architect
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] as const }}
-          className="text-5xl md:text-[6rem] lg:text-[8rem] font-serif tracking-tight text-balance leading-[0.95] text-foreground"
-        >
-          BUILDING INTELLIGENCE<br />
-          <span className="text-muted-foreground italic">WITH PURPOSE</span>
-        </motion.h1>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 3, duration: 2 }}
-          className="absolute bottom-16 flex flex-col items-center gap-6 text-muted-foreground/40"
-        >
-          <span className="text-[9px] uppercase tracking-[0.4em]">Explore</span>
-          <div className="w-[1px] h-20 bg-gradient-to-b from-muted-foreground/30 to-transparent" />
-        </motion.div>
-      </motion.section>
-
-      {/* 2. THE REVEAL SECTION */}
-      <section className="min-h-[100vh] w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col justify-center items-start text-left relative z-20 py-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 80 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-20%" }}
-          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] as const }}
-          className="w-full flex flex-col items-start"
-        >
-          <p className="text-4xl md:text-6xl lg:text-8xl font-serif tracking-tight text-foreground/90 leading-none mb-16">
-            Beyond the Cloud.<br />
-            <span className="text-muted-foreground italic">Intelligence Anywhere.</span>
-          </p>
-
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-32 items-start w-full mt-12 border-t border-foreground/10 pt-16">
-             <p className="text-lg md:text-2xl text-muted-foreground leading-relaxed text-balance font-sans font-light max-w-2xl">
-               Built where intelligence lives smarter, closer, and faster. Engineering on-device, 
-               privacy-first artificial intelligence across cloud infrastructure, 
-               local intelligence, and spatial computing ecosystems.
-             </p>
-
-             <div className="flex flex-col gap-8 w-full lg:w-auto">
-               {/* Elegant Links (No bulky buttons) */}
-               <Link href="/projects" className="group flex items-center justify-between lg:justify-start gap-8 text-sm font-sans uppercase tracking-[0.2em] text-foreground transition-all py-4 border-b border-foreground/5 hover:border-foreground/20">
-                  <span className="relative overflow-hidden pb-1">
-                    View Spaces
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground transition-all duration-700 ease-in-out group-hover:w-full" />
-                  </span>
-                  <ArrowRight className="w-4 h-4 opacity-50 transition-all duration-700 group-hover:opacity-100 group-hover:translate-x-2" />
-               </Link>
-
-               <Link href="/timeline" className="group flex items-center justify-between lg:justify-start gap-8 text-sm font-sans uppercase tracking-[0.2em] text-muted-foreground transition-all hover:text-foreground py-4 border-b border-foreground/5 hover:border-foreground/20">
-                  <span className="relative overflow-hidden pb-1">
-                    Explore Journey
-                    <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-foreground transition-all duration-700 ease-in-out group-hover:w-full" />
-                  </span>
-                  <ArrowRight className="w-4 h-4 opacity-0 -translate-x-4 transition-all duration-700 group-hover:opacity-100 group-hover:translate-x-0" />
-               </Link>
-             </div>
+          <div className="relative z-10 h-full flex flex-col justify-between">
+            <div className="flex justify-between items-start">
+              <span 
+                className="px-4 py-2 text-xs uppercase font-medium border border-white/30 rounded-full backdrop-blur-md"
+                style={{ letterSpacing: '0.2em' }}
+              >
+                Soorya Sendilnath
+              </span>
+              <ArrowUpRight className="w-8 h-8 opacity-50 group-hover:opacity-100 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" />
+            </div>
+            
+            <div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif tracking-tight leading-[1.1] mb-6">
+                Designing <br/> 
+                <span className="italic text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400">Intelligent</span> <br/>
+                Interfaces
+              </h2>
+              <p className="text-lg opacity-80 max-w-md font-light">
+                Bridging the gap between raw computational power and seamless human experience through design engineering.
+              </p>
+            </div>
           </div>
-        </motion.div>
-      </section>
+        </LiquidGlassInteractive>
 
+        {/* Bento 2: Featured Project */}
+        <LiquidGlassInteractive 
+          renderer="webgl"
+          lensProfile="player"
+          className="md:col-span-2 md:row-span-1 border border-white/20 p-10 group"
+          style={{ borderRadius: '2.5rem' }}
+          background="rgba(20, 20, 25, 0.1)"
+        >
+          <div className="relative z-10 h-full flex flex-col justify-between">
+            <div className="flex justify-between items-start">
+              <h3 className="text-2xl font-serif">Project: Spatial AI</h3>
+              <ArrowUpRight className="w-6 h-6 opacity-50 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <p className="opacity-70 text-sm">
+              An immersive computing interface powered by local LLMs, wrapped in a hyper-realistic glassmorphic UI.
+            </p>
+          </div>
+        </LiquidGlassInteractive>
+
+        {/* Bento 3: Tech Stack / Data */}
+        <LiquidGlassInteractive 
+          renderer="webgl"
+          lensProfile="player"
+          className="md:col-span-1 md:row-span-1 border border-white/20 p-8 flex flex-col justify-center items-center text-center group"
+          style={{ borderRadius: '2.5rem' }}
+          background="rgba(20, 20, 25, 0.1)"
+        >
+          <div className="relative z-10">
+            <h4 className="text-5xl font-black mb-2 italic">10<span className="text-cyan-400">+</span></h4>
+            <p className="text-xs uppercase tracking-widest opacity-70">Years of Code</p>
+          </div>
+        </LiquidGlassInteractive>
+
+        {/* Bento 4: Social / Contact */}
+        <LiquidGlassInteractive 
+          renderer="webgl"
+          lensProfile="player"
+          className="md:col-span-1 md:row-span-1 border border-white/20 p-8 flex flex-col justify-between group"
+          style={{ borderRadius: '2.5rem' }}
+          background="rgba(20, 20, 25, 0.1)"
+        >
+          <div className="relative z-10 h-full flex flex-col justify-between">
+            <h3 className="text-xl font-serif">Connect</h3>
+            <div className="flex gap-4">
+              <Link href="#" className="p-3 bg-white/5 rounded-full hover:bg-white/20 transition-colors border border-white/10"><Github className="w-5 h-5"/></Link>
+              <Link href="#" className="p-3 bg-white/5 rounded-full hover:bg-white/20 transition-colors border border-white/10"><Twitter className="w-5 h-5"/></Link>
+              <Link href="#" className="p-3 bg-white/5 rounded-full hover:bg-white/20 transition-colors border border-white/10"><Mail className="w-5 h-5"/></Link>
+            </div>
+          </div>
+        </LiquidGlassInteractive>
+
+      </div>
     </main>
   );
 }
