@@ -12,91 +12,93 @@ export default function MinimalBackground() {
         zIndex: -1,
         pointerEvents: "none",
         overflow: "hidden",
-        backgroundColor: "#08090d",
+        backgroundColor: "#07080B",
       }}
     >
-      {/* Background Architectural Grid */}
+      {/* Precision Perspective Grid (Inspired by Squarespace Foundations by Resn) */}
       <div
         style={{
           position: "absolute",
           inset: 0,
           backgroundImage: `
-            linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
+            linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px)
           `,
-          backgroundSize: "64px 64px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 80%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 30%, black 40%, transparent 80%)",
+          backgroundSize: "56px 56px",
+          maskImage: "radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 90% 70% at 50% 30%, black 30%, transparent 80%)",
         }}
       />
 
-      {/* Floating Luminous Orbs for Rich Glass Refraction */}
+      {/* Primary Luminous Cyan Aura (Spatial Light) */}
       <motion.div
         style={{
           position: "absolute",
           top: "-15%",
-          left: "15%",
+          left: "20%",
           width: "55vw",
           height: "55vw",
           borderRadius: "9999px",
-          background: "radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(99, 102, 241, 0.12) 45%, transparent 70%)",
-          filter: "blur(90px)",
+          background: "radial-gradient(circle, rgba(0, 240, 255, 0.18) 0%, rgba(37, 99, 235, 0.08) 50%, transparent 70%)",
+          filter: "blur(100px)",
           willChange: "transform",
         }}
         animate={{
           x: ["0%", "8%", "-6%", "0%"],
-          y: ["0%", "6%", "-8%", "0%"],
-          scale: [1, 1.08, 0.95, 1],
+          y: ["0%", "5%", "-7%", "0%"],
+          scale: [1, 1.06, 0.96, 1],
         }}
-        transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
       />
 
+      {/* Secondary Deep Electric Violet Aura (Neural Core) */}
       <motion.div
         style={{
           position: "absolute",
-          top: "30%",
+          top: "35%",
           right: "-10%",
           width: "50vw",
           height: "50vw",
           borderRadius: "9999px",
-          background: "radial-gradient(circle, rgba(168, 85, 247, 0.20) 0%, rgba(236, 72, 153, 0.10) 45%, transparent 70%)",
-          filter: "blur(110px)",
-          willChange: "transform",
-        }}
-        animate={{
-          x: ["0%", "-10%", "5%", "0%"],
-          y: ["0%", "-8%", "10%", "0%"],
-          scale: [1, 0.94, 1.1, 1],
-        }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      <motion.div
-        style={{
-          position: "absolute",
-          bottom: "-10%",
-          left: "25%",
-          width: "60vw",
-          height: "60vw",
-          borderRadius: "9999px",
-          background: "radial-gradient(circle, rgba(20, 184, 166, 0.18) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(138, 43, 226, 0.16) 0%, rgba(192, 38, 211, 0.06) 50%, transparent 70%)",
           filter: "blur(120px)",
           willChange: "transform",
         }}
         animate={{
-          x: ["0%", "-6%", "8%", "0%"],
-          y: ["0%", "10%", "-6%", "0%"],
-          scale: [1, 1.05, 0.95, 1],
+          x: ["0%", "-8%", "6%", "0%"],
+          y: ["0%", "-6%", "8%", "0%"],
+          scale: [1, 0.95, 1.08, 1],
         }}
-        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Subtle Vignette Overlay */}
+      {/* Tertiary Horizon Light (Edge Mesh) */}
+      <motion.div
+        style={{
+          position: "absolute",
+          bottom: "-15%",
+          left: "30%",
+          width: "60vw",
+          height: "60vw",
+          borderRadius: "9999px",
+          background: "radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 70%)",
+          filter: "blur(110px)",
+          willChange: "transform",
+        }}
+        animate={{
+          x: ["0%", "-5%", "7%", "0%"],
+          y: ["0%", "8%", "-5%", "0%"],
+          scale: [1, 1.04, 0.95, 1],
+        }}
+        transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
+      />
+
+      {/* Subtle Vignette for Spatial Depth */}
       <div
         style={{
           position: "absolute",
           inset: 0,
-          background: "radial-gradient(circle at 50% 50%, transparent 60%, rgba(8, 9, 13, 0.8) 100%)",
+          background: "radial-gradient(circle at 50% 45%, transparent 50%, rgba(7, 8, 11, 0.75) 100%)",
         }}
       />
     </div>

@@ -46,76 +46,40 @@
   --font-playfair: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-geist-mono: "JetBrains Mono", Menlo, Monaco, Consolas, monospace;
 
-  /* Luxury Architectural Light Mode - Travertine & Ivory */
-  --background: oklch(0.97 0.01 80); /* Soft warm ivory */
-  --foreground: oklch(0.20 0.01 250); /* Deep graphite/charcoal */
+  /* Deep Obsidian Luxury Theme */
+  --background: oklch(0.12 0.015 260); /* Deep Obsidian #08090C */
+  --foreground: oklch(0.98 0 0); /* Pure White */
   
-  --card: oklch(0.95 0.01 80);
-  --card-foreground: oklch(0.20 0.01 250);
+  --card: oklch(0.16 0.02 260);
+  --card-foreground: oklch(0.98 0 0);
   
-  --popover: oklch(0.97 0.01 80);
-  --popover-foreground: oklch(0.20 0.01 250);
+  --popover: oklch(0.15 0.02 260);
+  --popover-foreground: oklch(0.98 0 0);
   
-  --primary: oklch(0.75 0.08 75); /* Champagne Gold */
-  --primary-foreground: oklch(0.98 0.01 80);
+  --primary: oklch(0.85 0.18 200); /* Vibrant Ethereal Cyan #00F0FF */
+  --primary-foreground: oklch(0.10 0 0);
   
-  --secondary: oklch(0.90 0.01 80); /* Stone grey */
-  --secondary-foreground: oklch(0.20 0.01 250);
+  --secondary: oklch(0.55 0.25 300); /* Electric Violet #8A2BE2 */
+  --secondary-foreground: oklch(0.98 0 0);
   
-  --muted: oklch(0.92 0.01 80); 
-  --muted-foreground: oklch(0.50 0.01 250);
+  --muted: oklch(0.22 0.02 260); 
+  --muted-foreground: oklch(0.65 0.01 260);
   
-  --accent: oklch(0.75 0.08 75); /* Champagne Gold */
-  --accent-foreground: oklch(0.98 0.01 80);
-  
-  --destructive: oklch(0.60 0.15 20);
-  
-  --border: oklch(0.20 0.01 250 / 10%);
-  --input: oklch(0.20 0.01 250 / 10%);
-  --ring: oklch(0.75 0.08 75 / 50%);
-  
-  --radius: 0px; /* Sharp, structural edges */
-  
-  /* Smoked Glass / Marble feel */
-  --glass: oklch(0.97 0.01 80 / 70%);
-  --glass-border: oklch(0.20 0.01 250 / 8%);
-
-  --particle-color: 40, 40, 40;
-}
-
-.dark {
-  /* Luxury Architectural Dark Mode - Charcoal & Warm Light */
-  --background: oklch(0.18 0.01 250); /* Charcoal/Graphite */
-  --foreground: oklch(0.95 0.02 80); /* Warm travertine white */
-  
-  --card: oklch(0.22 0.01 250);
-  --card-foreground: oklch(0.95 0.02 80);
-  
-  --popover: oklch(0.18 0.01 250);
-  --popover-foreground: oklch(0.95 0.02 80);
-  
-  --primary: oklch(0.80 0.10 75); /* Glowing Champagne Gold */
-  --primary-foreground: oklch(0.18 0.01 250);
-  
-  --secondary: oklch(0.25 0.01 250); /* Architectural concrete */
-  --secondary-foreground: oklch(0.95 0.02 80);
-  
-  --muted: oklch(0.25 0.01 250);
-  --muted-foreground: oklch(0.70 0.02 80);
-  
-  --accent: oklch(0.80 0.10 75);
-  --accent-foreground: oklch(0.18 0.01 250);
+  --accent: oklch(0.85 0.18 200);
+  --accent-foreground: oklch(0.10 0 0);
   
   --destructive: oklch(0.60 0.15 20);
   
-  --border: oklch(0.95 0.02 80 / 10%);
-  --input: oklch(0.95 0.02 80 / 10%);
-  --ring: oklch(0.80 0.10 75 / 50%);
+  --border: oklch(0.98 0 0 / 8%);
+  --input: oklch(0.98 0 0 / 8%);
+  --ring: oklch(0.85 0.18 200 / 40%);
   
-  --glass: oklch(0.18 0.01 250 / 60%);
-  --glass-border: oklch(0.95 0.02 80 / 8%);
+  --radius: 16px;
+  
+  --glass: oklch(0.14 0.02 260 / 65%);
+  --glass-border: oklch(0.98 0 0 / 10%);
 
-  --particle-color: 240, 235, 220;
+  --particle-color: 0, 240, 255;
 }
 
 @layer base {
@@ -123,7 +87,7 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground tracking-tight font-sans selection:bg-primary/20 selection:text-primary-foreground;
+    @apply bg-background text-foreground tracking-tight font-sans selection:bg-cyan-500/20 selection:text-cyan-200;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
   html {
@@ -131,41 +95,52 @@
   }
   
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: transparent; 
   }
   ::-webkit-scrollbar-thumb {
-    background: oklch(1 0 0 / 15%); 
-    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.12); 
+    border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: oklch(1 0 0 / 30%); 
+    background: rgba(255, 255, 255, 0.25); 
   }
 }
 
+/* Award-Winning Design Primitives */
 .glass-panel {
-  @apply bg-glass border border-glass-border backdrop-blur-md rounded-2xl shadow-2xl;
-}
-
-.liquid-glass-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(14, 16, 23, 0.65);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-.liquid-glass-card:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.award-card {
+  background: rgba(15, 17, 26, 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.liquid-glass-pill {
-  background: rgba(255, 255, 255, 0.05);
+.award-card:hover {
+  border-color: rgba(0, 240, 255, 0.3);
+  box-shadow: 0 25px 60px -10px rgba(0, 240, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.award-pill {
+  background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glow-mesh {
+  background: radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.12) 0%, rgba(138, 43, 226, 0.06) 40%, transparent 70%);
 }

@@ -1,14 +1,14 @@
 import MinimalBackground from "@/components/visuals/MinimalBackground";
 import Navigation from "@/components/layout/Navigation";
 import CommandPalette from "@/components/ui/CommandPalette";
+import TerminalEasterEgg from "@/components/ui/TerminalEasterEgg";
 import { ThemeProvider } from "@/components/theme-provider";
-import SmoothScroll from "@/components/layout/SmoothScroll";
 import "./globals.css";
 import type { Metadata, Viewport } from "next";
 
 export const viewport: Viewport = {
-  themeColor: "#09090b",
-  colorScheme: "dark light",
+  themeColor: "#08090C",
+  colorScheme: "dark",
   width: "device-width",
   initialScale: 1,
 };
@@ -20,20 +20,21 @@ export const metadata: Metadata = {
     template: "%s | Soorya Sendilnath",
   },
   description:
-    "Portfolio of Soorya Sendilnath, an AI Systems Engineer and IoT Specialist from Chennai, India. Specializing in on-device AI, spatial computing, cloud infrastructure, and distributed edge intelligence.",
+    "Portfolio of Soorya Sendilnath. B.Tech CSE (IoT) from SRM IST. Engineering on-device spatial intelligence, autonomous agents, and resilient cloud-edge distributed systems.",
   keywords: [
     "Soorya Sendilnath",
     "AI Systems Engineer",
     "Spatial Computing",
     "On-Device AI",
+    "Apple Silicon MLX",
     "CoreML",
-    "MLX",
     "SwiftUI",
     "Azure Cloud",
     "Edge Computing",
     "SkillTree",
     "JarvisGemma",
-    "Machine Learning Engineer",
+    "Weather Analytics",
+    "SRM Institute of Science and Technology",
     "Chennai Developer",
   ],
   authors: [
@@ -47,16 +48,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://soorya-portfolio-vert.vercel.app",
-    siteName: "Soorya Sendilnath — Portfolio",
+    siteName: "Soorya Sendilnath Portfolio",
     title: "Soorya Sendilnath | AI Systems Engineer & Spatial Computing",
     description:
-      "Engineering high-performance AI systems, spatial intelligence, and distributed edge-cloud architectures.",
+      "Engineering high-performance on-device AI, spatial interfaces, and distributed edge systems.",
     images: [
       {
-        url: "/images/weather-image2.png",
+        url: "/images/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Soorya Sendilnath Portfolio Systems Architecture",
+        alt: "Soorya Sendilnath Portfolio Systems Preview",
       },
     ],
   },
@@ -64,8 +65,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Soorya Sendilnath | AI Systems Engineer",
     description:
-      "Engineering high-performance AI systems, spatial intelligence, and distributed edge-cloud architectures.",
-    images: ["/images/weather-image2.png"],
+      "Engineering on-device spatial intelligence, autonomous agents, and resilient cloud-edge distributed systems.",
+    images: ["/images/og-image.jpg"],
     creator: "@sooryasendilnath",
   },
   robots: {
@@ -101,7 +102,7 @@ const jsonLd = {
       ],
       alumniOf: {
         "@type": "EducationalOrganization",
-        name: "SRM Institute of Science and Technology",
+        name: "SRM Institute of Science and Technology, Ramapuram",
       },
       knowsAbout: [
         "Artificial Intelligence",
@@ -144,14 +145,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col relative antialiased bg-background text-foreground transition-colors duration-300 font-sans selection:bg-cyan-500/20 selection:text-cyan-200">
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
-          <SmoothScroll>
-            <MinimalBackground />
-            <Navigation />
-            <CommandPalette />
-            {children}
-          </SmoothScroll>
+      <body className="min-h-full flex flex-col relative antialiased bg-background text-foreground transition-colors duration-300 overflow-x-hidden font-sans">
+        <ThemeProvider attribute="class" defaultTheme="dark" forcedTheme="dark" enableSystem={false}>
+          <MinimalBackground />
+          <Navigation />
+          <CommandPalette />
+          <TerminalEasterEgg />
+          {children}
         </ThemeProvider>
       </body>
     </html>
