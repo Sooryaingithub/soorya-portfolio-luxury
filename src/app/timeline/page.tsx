@@ -1,113 +1,142 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const timelineEvents = [
   {
     year: "2024",
     events: [
-      { title: "Road Safety Monitoring", type: "Computer Vision" },
-      { title: "IoT Pipeline", type: "Data Engineering" },
-      { title: "Edge Computing Research", type: "Infrastructure" }
+      { title: "Road Safety Monitoring", type: "Computer Vision", description: "Real-time vehicle detection and speed analytics using Edge AI." },
+      { title: "IoT Pipeline", type: "Data Engineering", description: "Scalable data ingestion and processing for sensor networks." },
+      { title: "Edge Computing Research", type: "Infrastructure", description: "Optimizing ML models for low-power edge devices." }
     ]
   },
   {
     year: "2025",
     events: [
-      { title: "Weather Analytics Platform", type: "Cloud Engineering" },
-      { title: "Cloud Engineering Projects", type: "Infrastructure" },
-      { title: "Privacy-First Remote Access", type: "Security" }
+      { title: "Weather Analytics Platform", type: "Cloud Engineering", description: "Distributed system for analyzing meteorological patterns." },
+      { title: "Cloud Engineering Projects", type: "Infrastructure", description: "Infrastructure as Code and automated deployment pipelines." },
+      { title: "Privacy-First Remote Access", type: "Security", description: "Secure VPN alternative using end-to-end encryption." }
     ]
   },
   {
     year: "2026",
     events: [
-      { title: "SkillTree", type: "AI Systems" },
-      { title: "JarvisGemma", type: "Spatial AI" },
-      { title: "Local AI Infrastructure", type: "Local AI" },
-      { title: "WhisperKit", type: "Speech Intelligence" },
-      { title: "NAS Infrastructure", type: "Hardware" }
+      { title: "JarvisGemma", type: "Spatial AI", description: "Spatial AI agent for desktop interaction and automation." },
+      { title: "Local AI Infrastructure", type: "Local AI", description: "Self-hosted LLMs and vector databases on consumer hardware." },
+      { title: "WhisperKit", type: "Speech Intelligence", description: "Optimized speech-to-text integration for macOS and iOS." },
+      { title: "NAS Infrastructure", type: "Hardware", description: "Custom-built Network Attached Storage with high-speed caching." },
+      { title: "SkillTree", type: "AI Systems", description: "Intelligent platform for tracking and visualizing skill progression." }
     ]
   }
 ];
 
+function getTheme(year: string) {
+  if (year === "2026") return { primary: "#8A2BE2", secondary: "#00F0FF" };
+  if (year === "2025") return { primary: "#10B981", secondary: "#06B6D4" };
+  if (year === "2024") return { primary: "#F59E0B", secondary: "#E11D48" };
+  return { primary: "#8A2BE2", secondary: "#00F0FF" };
+}
+
 export default function Timeline() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
+    target: targetRef,
   });
 
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+
   return (
-    <main ref={containerRef} className="flex-1 flex flex-col min-h-[100dvh] relative max-w-[1400px] mx-auto w-full px-6 md:px-12 overflow-hidden">
-      
-      {/* Background Volumetric Lighting */}
-      <div className="fixed top-0 left-1/2 -translate-x-1/2 w-full h-[50vh] bg-gradient-to-b from-foreground/5 to-transparent pointer-events-none -z-10 translate-z-0" />
+    <main className="bg-background">
+      <div className="h-[600vh] relative" ref={targetRef}>
+        <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+          
+          <div className="px-4 md:px-12 mb-12 max-w-7xl mx-auto w-full">
+            <h1 className="text-4xl md:text-6xl font-semibold tracking-tighter mb-4">
+              Engineering Journey
+            </h1>
+            <p className="text-lg text-muted-foreground">Scroll to explore the timeline.</p>
+          </div>
 
-      {/* Hero Section */}
-      <section className="min-h-[80vh] flex flex-col justify-center items-start pt-48 pb-20 relative z-20 border-b border-foreground/10 mb-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-8 inline-flex items-center gap-3 px-0 py-1 text-[10px] uppercase tracking-[0.4em] font-medium text-muted-foreground border-b border-foreground/10 pb-2"
-        >
-          Chronology
-        </motion.div>
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-6xl md:text-8xl lg:text-9xl font-serif tracking-tight text-balance leading-none text-foreground mb-8"
-        >
-          Engineering <br className="hidden md:block" />
-          <span className="italic text-muted-foreground">Journey.</span>
-        </motion.h1>
-      </section>
-
-      {/* Spatial Journey Exhibits */}
-      <div className="relative z-20 pb-40">
-        {timelineEvents.map((yearBlock, idx) => (
-          <motion.div 
-            key={yearBlock.year} 
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-20%" }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col md:flex-row items-start justify-between min-h-[60vh] relative mb-40 border-l border-foreground/10 pl-6 md:pl-12 ml-4 md:ml-8"
-          >
-            {/* Huge Cinematic Year Typography behind content */}
-            <div className="absolute top-0 right-0 md:-right-12 text-[12rem] md:text-[20rem] font-serif tracking-tighter text-foreground-[0.02] text-foreground/5 leading-none select-none z-0 pointer-events-none">
-              {yearBlock.year}
+          <motion.div style={{ x }} className="flex gap-12 px-4 md:px-12 pb-24 items-center w-max pr-[50vw]">
+            {/* Start point */}
+            <div className="flex-none w-24 flex items-center justify-center">
+              <div className="w-3 h-3 rounded-full bg-white/20" />
             </div>
 
-            <div className="w-full md:w-1/3 relative z-10 pt-4 mb-16 md:mb-0">
-               <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif text-foreground">{yearBlock.year}</h2>
-               <div className="w-12 h-px bg-foreground/20 mt-6" />
-            </div>
-
-            <div className="w-full md:w-2/3 relative z-10 flex flex-col gap-12 pt-4">
-              {yearBlock.events.map((event, eIdx) => (
-                <motion.div 
-                  key={eIdx}
-                  className="group relative flex flex-col md:flex-row md:items-center justify-between gap-4 pb-12 border-b border-foreground/5 last:border-none"
-                >
-                  <div>
-                    <h3 className="text-2xl md:text-3xl font-serif tracking-tight text-foreground group-hover:text-primary transition-colors duration-500 mb-2">
-                      {event.title}
-                    </h3>
-                  </div>
-                  <div className="flex-shrink-0">
-                    <p className="text-[10px] font-sans uppercase tracking-[0.3em] text-muted-foreground bg-foreground/5 px-4 py-2 border border-foreground/5">
-                      {event.type}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+            {timelineEvents.map((yearBlock, idx) => {
+              const { primary } = getTheme(yearBlock.year);
+              return (
+                <div key={yearBlock.year} className="flex-none flex items-center gap-12">
+                  <motion.div 
+                    className="flex flex-col gap-6"
+                    initial={{ opacity: 0.3, filter: "brightness(0.5) grayscale(50%)" }}
+                    whileInView={{ opacity: 1, filter: "brightness(1.1) grayscale(0%)" }}
+                    viewport={{ margin: "0px -30% 0px -30%" }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h2 
+                      className="text-8xl md:text-[12rem] font-bold tracking-tighter leading-none select-none transition-all duration-500"
+                      style={{ 
+                        color: "transparent",
+                        WebkitTextStroke: `2px ${primary}`,
+                        textShadow: `0 0 30px ${primary}80`
+                      }}
+                    >
+                      {yearBlock.year}
+                    </h2>
+                    <div className="flex gap-4 items-start pt-4">
+                      {yearBlock.events.map((event, eIdx) => (
+                        <div 
+                          key={eIdx}
+                          className="glass-panel p-6 w-64 md:w-80 shrink-0 hover:bg-foreground/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[var(--hover-shadow)] group"
+                          style={{ '--hover-shadow': `inset 0 0 20px ${primary}40` } as React.CSSProperties}
+                        >
+                          <p 
+                            className="text-[10px] uppercase tracking-wider font-medium px-2 py-1 rounded border inline-block mb-4"
+                            style={{ backgroundColor: `${primary}1A`, color: primary, borderColor: `${primary}33` }}
+                          >
+                            {event.type}
+                          </p>
+                          <h3 className="text-xl font-medium tracking-tight mb-2">
+                            {event.title}
+                          </h3>
+                          {event.description && (
+                            <p className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors">
+                              {event.description}
+                            </p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </motion.div>
+                  
+                  {/* Connecting line segment */}
+                  <div className="w-24 h-px bg-white/10" />
+                </div>
+              );
+            })}
+            
+            {/* End point text */}
+            <div className="flex-none flex items-center gap-6 ml-12">
+              <motion.h2 
+                initial={{ opacity: 0.3, filter: "blur(10px) brightness(0.5)", scale: 0.9 }}
+                whileInView={{ opacity: 1, filter: "blur(0px) brightness(1.2)", scale: 1 }}
+                viewport={{ margin: "0px -30% 0px -30%" }}
+                transition={{ duration: 0.8 }}
+                className="text-8xl md:text-[10rem] font-bold tracking-tighter leading-none select-none pr-12"
+                style={{ 
+                  color: "transparent",
+                  WebkitTextStroke: `2px #00F0FF`,
+                  textShadow: `0 0 40px rgba(0,240,255,0.5)`,
+                }}
+              >
+                Great things are on its way
+              </motion.h2>
             </div>
           </motion.div>
-        ))}
+        </div>
       </div>
     </main>
   );

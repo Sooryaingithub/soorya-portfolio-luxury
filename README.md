@@ -1,13 +1,13 @@
-# Soorya's Luxury Architecture Portfolio
+# Soorya's Standard Portfolio
 
-This directory contains the experimental luxury architectural redesign of your portfolio website.
-It features the dark luxury theme, smoothed 120fps scrolling physics (Lenis), and editorial typography.
+This directory contains the original, standard version of your portfolio website.
+It matches the version currently hosted on Vercel.
 
-**Branch:** `luxury-architecture-redesign`
+**Branch:** `main`
 
 ## Getting Started
 To view this website locally:
-1. Open a terminal in this directory (`soorya-portfolio-luxury`).
+1. Open a terminal in this directory (`soorya-portfolio-standard`).
 2. Run `npm install` (if necessary).
 3. Run `npm run dev`.
 4. Open [http://localhost:3000](http://localhost:3000) in your browser.
